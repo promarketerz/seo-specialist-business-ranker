@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Asif | SEO Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══ RESET ═══ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+
+/* ═══ DESIGN TOKENS ═══ */
+:root{
+  /* base */
+  --white:#ffffff;
+  --off-white:#f0f7ff;
+  --blue-50:#eef4ff;
+  --blue-100:#dbeafe;
+  --blue-200:#bfdbfe;
+  --blue-300:#93c5fd;
+  --blue-400:#60a5fa;
+  --blue-500:#3b82f6;
+  --blue-600:#2563eb;
+  --blue-700:#1d4ed8;
+  --blue-800:#1e40af;
+  --blue-900:#1e3a8a;
+  /* accent */
+  --accent:#2563eb;
+  --accent-light:#3b82f6;
+  --accent-glow:rgba(37,99,235,.35);
+  /* text */
+  --text-primary:#1e293b;
+  --text-secondary:#475569;
+  --text-muted:#64748b;
+  --text-light:#94a3b8;
+  /* card */
+  --card-bg:#ffffff;
+  --card-shadow:0 2px 24px rgba(30,58,138,.08);
+  --card-shadow-hover:0 8px 40px rgba(30,58,138,.16);
+  --card-border:#e2e8f0;
+  /* section bg alternates */
+  --section-a:#ffffff;
+  --section-b:#f0f7ff;
+  /* radius */
+  --r:14px;--r-sm:10px;--r-lg:20px;
+}
+
+body{
+  font-family:'Open Sans',sans-serif;
+  background:var(--white);
+  color:var(--text-primary);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+input,textarea,button,select{font-family:inherit}
+img{max-width:100%}
+
+/* ═══ UTILITY ═══ */
+.wrap{max-width:1140px;margin:0 auto}
+.sec{padding:6.5rem 2rem}
+.sec-label{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.75rem;text-transform:uppercase;letter-spacing:2.2px;
+  color:var(--accent);font-weight:700;margin-bottom:.7rem
+}
+.sec-label::before{content:'';width:22px;height:2.5px;background:var(--accent);border-radius:2px}
+.sec-title{
+  font-size:clamp(1.75rem,3.6vw,2.55rem);font-weight:800;
+  color:var(--text-primary);line-height:1.2;letter-spacing:-.5px
+}
+.sec-title .hl{color:var(--accent)}
+.sec-desc{color:var(--text-secondary);margin-top:.75rem;font-size:1.02rem;line-height:1.75;max-width:520px}
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+/* ═══ NAV ═══ */
+nav{
+  position:fixed;top:0;width:100%;z-index:900;
+  padding:1.1rem 0;
+  transition:background .35s,box-shadow .35s,padding .3s;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+nav.scrolled{
+  background:rgba(255,255,255,.95);
+  box-shadow:0 2px 20px rgba(30,58,138,.1);
+  padding:.7rem 0;
+}
+.nav-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.logo{font-weight:800;font-size:1.05rem;color:var(--text-primary);white-space:nowrap;letter-spacing:.2px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:1.9rem;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:600;color:var(--text-secondary);position:relative;padding:.35rem 0;transition:color .28s}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);border-radius:1px;transition:width .3s cubic-bezier(.4,0,.2,1)}
+.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover::after{width:100%}
+/* contact CTA */
+.nav-cta{
+  padding:.52rem 1.3rem!important;border-radius:8px;
+  border:2px solid var(--accent);background:transparent;
+  color:var(--accent)!important;font-weight:700;font-size:.84rem;
+  transition:background .25s,color .25s,box-shadow .25s
+}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--accent);color:#fff!important;box-shadow:0 4px 16px var(--accent-glow)}
+
+/* hamburger */
+.hburg{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001;padding:.5rem}
+.hburg span{width:22px;height:2.5px;background:var(--text-primary);border-radius:2px;transition:all .3s}
+.hburg.active span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+.hburg.active span:nth-child(2){opacity:0}
+.hburg.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
+/* mobile */
+.m-ov{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:899;opacity:0;pointer-events:none;transition:opacity .3s}
+.m-ov.active{opacity:1;pointer-events:auto}
+.m-pan{position:fixed;top:0;right:-100%;width:min(280px,78vw);height:100vh;background:var(--white);z-index:900;padding:5rem 1.8rem 2rem;transition:right .35s cubic-bezier(.4,0,.2,1);box-shadow:-4px 0 30px rgba(30,58,138,.12)}
+.m-pan.active{right:0}
+.m-pan a{display:block;padding:.85rem 0;font-size:1.05rem;font-weight:600;color:var(--text-secondary);border-bottom:1px solid var(--blue-100);transition:color .28s,padding-left .28s}
+.m-pan a:hover{color:var(--accent);padding-left:.5rem}
+
+/* ═══ HERO ═══ */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:7rem 2rem 4rem;
+  /* soft blue-white gradient base */
+  background:linear-gradient(160deg, #eef4ff 0%, #dbeafe 30%, #ffffff 60%, #f0f7ff 100%);
+  overflow:hidden;
+}
+/* very subtle mesh shapes */
+.hero-mesh{position:absolute;inset:0;pointer-events:none;z-index:0}
+.mesh-blob{position:absolute;border-radius:50%;filter:blur(80px)}
+.mb1{width:420px;height:420px;background:rgba(37,99,235,.07);top:-80px;right:-60px}
+.mb2{width:300px;height:300px;background:rgba(59,130,246,.05);bottom:-60px;left:-40px}
+.mb3{width:200px;height:200px;background:rgba(37,99,235,.06);top:45%;left:60%}
+
+/* canvas sits behind text */
+#heroCanvas{position:absolute;inset:0;z-index:0}
+
+.hero-content{position:relative;z-index:1;text-align:center;max-width:780px}
+
+/* live badge */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.4rem 1rem;border-radius:50px;
+  background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);
+  margin-bottom:1.5rem;animation:fdw .7s .15s both
+}
+.hero-badge .dot{width:7px;height:7px;background:#22c55e;border-radius:50%;box-shadow:0 0 6px #22c55e;animation:pls 1.5s infinite}
+.hero-badge span{font-size:.82rem;color:var(--accent);font-weight:600}
+@keyframes pls{0%,100%{opacity:1}50%{opacity:.35}}
+
+.hero h1{
+  font-size:clamp(2.4rem,5.8vw,4.2rem);font-weight:800;
+  color:var(--text-primary);line-height:1.1;letter-spacing:-1px;
+  animation:fdw .7s .3s both
+}
+.hero h1 .gt{color:var(--accent)}
+.hero-sub{
+  font-size:clamp(.95rem,1.85vw,1.12rem);color:var(--text-secondary);
+  max-width:540px;margin:1.1rem auto 0;line-height:1.75;
+  animation:fdw .7s .45s both
+}
+/* stats */
+.stats-row{display:flex;justify-content:center;gap:clamp(2rem,5vw,3.6rem);margin-top:2.2rem;flex-wrap:wrap;animation:fdw .7s .6s both}
+.stat{text-align:center}
+.stat-val{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;color:var(--accent)}
+.stat-lbl{font-size:.76rem;color:var(--text-muted);margin-top:.15rem;text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
+/* btns */
+.hero-btns{display:flex;gap:.85rem;justify-content:center;margin-top:2.2rem;flex-wrap:wrap;animation:fdw .7s .75s both}
+.btn-primary{
+  padding:.78rem 1.85rem;border-radius:50px;border:none;
+  background:var(--accent);color:#fff;font-weight:700;font-size:.92rem;
+  box-shadow:0 4px 18px var(--accent-glow);
+  transition:transform .22s,box-shadow .22s;display:inline-block;cursor:pointer
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 7px 28px var(--accent-glow)}
+.btn-secondary{
+  padding:.78rem 1.85rem;border-radius:50px;
+  border:2px solid var(--accent);background:transparent;
+  color:var(--accent);font-weight:700;font-size:.92rem;
+  transition:background .25s,color .25s,transform .22s;display:inline-block;cursor:pointer
+}
+.btn-secondary:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+@keyframes fdw{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══ ABOUT ═══ */
+#about{background:var(--section-a)}
+.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:4.2rem;align-items:center;margin-top:2.8rem}
+.avatar-wrap{display:flex;justify-content:center;align-items:center}
+/* ring */
+.avatar-ring{position:relative;width:260px;height:260px}
+.avatar-ring::before{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--accent),var(--blue-300),var(--blue-500),var(--accent));
+  animation:spin 4s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.avatar-inner{position:absolute;inset:4px;border-radius:50%;background:var(--section-a);display:flex;align-items:center;justify-content:center}
+.avatar-initials{font-size:4.6rem;font-weight:800;color:var(--accent)}
+/* floating badges */
+.float-badge{
+  position:absolute;background:var(--white);border:1px solid var(--blue-200);
+  border-radius:12px;padding:.5rem .85rem;display:flex;align-items:center;gap:.4rem;
+  font-size:.73rem;font-weight:700;color:var(--text-primary);
+  box-shadow:0 4px 18px rgba(30,58,138,.12);white-space:nowrap;z-index:2
+}
+.float-badge .fbi{font-size:.95rem}
+.fb-1{top:4%;right:-26px;animation:fbob 3s ease-in-out infinite}
+.fb-2{bottom:12%;left:-34px;animation:fbob 3.6s ease-in-out .5s infinite}
+.fb-3{bottom:32%;right:-38px;animation:fbob 3.3s ease-in-out .85s infinite}
+@keyframes fbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+.about-info p{color:var(--text-secondary);line-height:1.85;margin-bottom:.85rem;font-size:.95rem}
+.edu-card{
+  margin-top:1.3rem;padding:1.05rem 1.2rem;border-radius:var(--r);
+  background:var(--blue-50);border:1px solid var(--blue-100);
+  display:flex;align-items:center;gap:.85rem
+}
+.edu-card h4{font-size:.88rem;color:var(--text-primary);font-weight:700}
+.edu-card p{font-size:.78rem;color:var(--text-muted);margin:0}
+
+/* ═══ INDUSTRIES ═══ */
+#industries{background:var(--section-b)}
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.6rem}
+.ind-card{
+  background:var(--white);border:1px solid var(--card-border);
+  border-radius:var(--r);padding:1.5rem 1.1rem;text-align:center;
+  box-shadow:var(--card-shadow);
+  transition:transform .28s,box-shadow .28s,border-color .28s
+}
+.ind-card:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover);border-color:var(--blue-300)}
+.ind-icon{font-size:1.7rem;margin-bottom:.5rem}
+.ind-card h4{font-size:.88rem;font-weight:700;color:var(--text-primary);margin-bottom:.28rem}
+.ind-card p{font-size:.76rem;color:var(--text-muted);line-height:1.5}
+
+/* ═══ NEXT-GEN SEO ═══ */
+#nextgen{background:var(--section-a)}
+.ng-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.4rem}
+.ng-card{
+  background:var(--white);border:1px solid var(--card-border);
+  border-radius:var(--r);padding:1.7rem 1.4rem;
+  box-shadow:var(--card-shadow);position:relative;overflow:hidden;
+  transition:transform .28s,box-shadow .28s,border-color .28s
+}
+.ng-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--blue-400));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .38s cubic-bezier(.4,0,.2,1)
+}
+.ng-card:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover);border-color:var(--blue-200)}
+.ng-card:hover::before{transform:scaleX(1)}
+.ng-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem}
+.ng-ico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.ic-p{background:#eff6ff} .ic-pk{background:#fdf2f8} .ic-g{background:#ecfdf5} .ic-gd{background:#fffbeb} .ic-bl{background:#eff6ff} .ic-rd{background:#fef2f2}
+.ng-card h3{font-size:.93rem;font-weight:700;color:var(--text-primary)}
+.ng-card .sub{font-size:.77rem;color:var(--text-muted);margin-top:.08rem}
+.ng-card p{font-size:.81rem;color:var(--text-secondary);line-height:1.7;margin-top:.6rem}
+.ng-tags{display:flex;flex-wrap:wrap;gap:.38rem;margin-top:.8rem}
+.ng-tag{
+  padding:.28rem .68rem;border-radius:16px;
+  background:var(--blue-50);border:1px solid var(--blue-100);
+  font-size:.74rem;color:var(--accent);font-weight:600;
+  transition:background .22s,border-color .22s
+}
+.ng-tag:hover{background:var(--blue-100);border-color:var(--blue-200)}
+
+/* ═══ PAIN POINTS ═══ */
+#painpoints{background:var(--section-b)}
+.pp-head{text-align:center;max-width:620px;margin:0 auto 2.8rem}
+.pp-head .sec-label{justify-content:center;display:flex}
+.pp-head .sec-desc{max-width:100%;margin-left:auto;margin-right:auto}
+.pp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+.pp-card{
+  background:var(--white);border:1px solid var(--card-border);
+  border-radius:var(--r);padding:1.6rem 1.3rem;
+  box-shadow:var(--card-shadow);
+  transition:transform .28s,box-shadow .28s,border-color .28s
+}
+.pp-card:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover);border-color:#fca5a5}
+.pp-top{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.75rem}
+.pp-num{
+  width:34px;height:34px;border-radius:9px;flex-shrink:0;
+  background:#fef2f2;border:1px solid #fca5a5;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.82rem;font-weight:800;color:#dc2626
+}
+.pp-card h4{font-size:.9rem;color:var(--text-primary);font-weight:700;line-height:1.4}
+.pp-card p{font-size:.79rem;color:var(--text-secondary);line-height:1.7}
+.pp-fix{
+  display:inline-flex;align-items:center;gap:.38rem;
+  margin-top:.8rem;font-size:.75rem;color:#16a34a;font-weight:700
+}
+.pp-fix .chk{
+  width:18px;height:18px;border-radius:5px;background:#dcfce7;
+  display:flex;align-items:center;justify-content:center;font-size:.7rem
+}
+
+/* ═══ SKILLS ═══ */
+#skills{background:var(--section-a)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:2.4rem}
+.skill-card{
+  background:var(--white);border:1px solid var(--card-border);
+  border-radius:var(--r);padding:1.55rem;
+  box-shadow:var(--card-shadow);position:relative;overflow:hidden;
+  transition:transform .28s,box-shadow .28s,border-color .28s
+}
+.skill-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--blue-400));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .36s cubic-bezier(.4,0,.2,1)
+}
+.skill-card:hover{transform:translateY(-3px);box-shadow:var(--card-shadow-hover);border-color:var(--blue-200)}
+.skill-card:hover::before{transform:scaleX(1)}
+.skill-card-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.95rem}
+.sci{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.skill-card h3{font-size:.91rem;font-weight:700;color:var(--text-primary)}
+.skill-card .sub{font-size:.75rem;color:var(--text-muted);margin-top:.08rem}
+.tags{display:flex;flex-wrap:wrap;gap:.38rem}
+.tag{
+  padding:.3rem .68rem;border-radius:16px;
+  background:var(--blue-50);border:1px solid var(--blue-100);
+  font-size:.74rem;color:var(--accent);font-weight:600;
+  transition:background .2s,border-color .2s
+}
+.tag:hover{background:var(--blue-100);border-color:var(--blue-200)}
+/* tools */
+.tools-sec{margin-top:3.4rem}
+.tools-row{display:flex;gap:.75rem;flex-wrap:wrap}
+.tool-pill{
+  display:flex;align-items:center;gap:.55rem;
+  padding:.58rem .95rem;border-radius:32px;
+  background:var(--white);border:1px solid var(--card-border);
+  box-shadow:0 2px 10px rgba(30,58,138,.06);
+  transition:transform .22s,border-color .25s,box-shadow .25s
+}
+.tool-pill:hover{transform:translateY(-2px);border-color:var(--blue-300);box-shadow:0 4px 16px rgba(30,58,138,.12)}
+.tool-pill .tpi{font-size:1.05rem}
+.tool-pill span{font-size:.82rem;color:var(--text-primary);font-weight:600}
+
+/* ═══ EXPERIENCE ═══ */
+#experience{background:var(--section-b)}
+.exp-grid{display:grid;grid-template-columns:.36fr .64fr;gap:2.6rem;margin-top:2.4rem;align-items:start}
+.exp-sticky{position:sticky;top:95px}
+.exp-badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.4rem}
+.exp-badge{
+  padding:.35rem .75rem;border-radius:16px;
+  background:var(--blue-50);border:1px solid var(--blue-100);
+  font-size:.73rem;color:var(--accent);font-weight:700
+}
+/* timeline */
+.timeline{position:relative;padding-left:25px}
+.timeline::before{
+  content:'';position:absolute;left:7px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--accent),var(--blue-300),transparent);border-radius:1px
+}
+.exp-card{
+  position:relative;margin-bottom:1.5rem;
+  background:var(--white);border:1px solid var(--card-border);
+  border-radius:var(--r);padding:1.55rem 1.35rem;
+  box-shadow:var(--card-shadow);
+  transition:transform .28s,box-shadow .28s,border-color .28s
+}
+.exp-card:hover{transform:translateX(5px);box-shadow:var(--card-shadow-hover);border-color:var(--blue-200)}
+.exp-card::before{
+  content:'';position:absolute;left:-22px;top:1.7rem;
+  width:13px;height:13px;border-radius:50%;
+  background:var(--accent);border:3px solid var(--section-b);
+  box-shadow:0 0 0 3px rgba(37,99,235,.2)
+}
+.exp-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.38rem;margin-bottom:.55rem}
+.exp-date{
+  font-size:.73rem;color:var(--accent);font-weight:700;
+  padding:.22rem .65rem;border-radius:12px;
+  background:var(--blue-50);border:1px solid var(--blue-100)
+}
+.exp-card h3{font-size:1rem;color:var(--text-primary);font-weight:700}
+.exp-card h4{font-size:.83rem;color:var(--text-muted);margin-bottom:.7rem;font-weight:500}
+.exp-card ul{display:flex;flex-direction:column;gap:.35rem}
+.exp-card li{font-size:.82rem;color:var(--text-secondary);padding-left:1.1rem;position:relative}
+.exp-card li::before{content:'';position:absolute;left:0;top:.72rem;width:5px;height:5px;border-radius:50%;background:#22c55e}
+.exp-card li strong{color:#16a34a}
+
+/* ═══ PRICING ═══ */
+#pricing{background:var(--section-a)}
+.pricing-head{text-align:center;max-width:560px;margin:0 auto 2rem}
+.pricing-head .sec-label{justify-content:center;display:flex}
+.pricing-head .sec-desc{max-width:100%;margin:0 auto}
+.pop-badge{
+  display:inline-flex;align-items:center;gap:.32rem;
+  padding:.26rem .68rem;border-radius:14px;
+  background:var(--accent);font-size:.71rem;font-weight:700;color:#fff;margin-bottom:.55rem
+}
+.pop-badge .pd{width:5px;height:5px;background:#fff;border-radius:50%;animation:pls 1.4s infinite}
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem}
+.price-card{
+  background:var(--white);border:1px solid var(--card-border);
+  border-radius:var(--r);padding:1.7rem 1.3rem;
+  box-shadow:var(--card-shadow);display:flex;flex-direction:column;
+  transition:transform .28s,box-shadow .28s,border-color .28s;position:relative
+}
+.price-card:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover)}
+.price-card.popular{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent),var(--card-shadow-hover)}
+.price-card.popular::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),var(--blue-400));
+  border-radius:var(--r) var(--r) 0 0
+}
+.price-card h3{font-size:1.02rem;font-weight:800;color:var(--text-primary);margin-top:.15rem}
+.price-card .ptag{font-size:.75rem;color:var(--text-muted);margin-bottom:.9rem;line-height:1.5}
+.price-val{display:flex;align-items:baseline;gap:.18rem;margin-bottom:.12rem}
+.price-val .dollar{font-size:1.05rem;color:var(--text-muted);font-weight:600;align-self:flex-start;margin-top:.12rem}
+.price-val .amount{font-size:1.9rem;font-weight:800;color:var(--text-primary)}
+.price-val .mo{font-size:.8rem;color:var(--text-muted)}
+.price-best{font-size:.73rem;color:var(--accent);font-weight:700;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:1px solid var(--blue-100)}
+.price-list{flex:1;display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.3rem}
+.price-list li{font-size:.79rem;color:var(--text-secondary);display:flex;align-items:flex-start;gap:.45rem;line-height:1.5}
+.price-list .chk{
+  width:17px;height:17px;border-radius:5px;flex-shrink:0;margin-top:1px;
+  background:#ecfdf5;border:1px solid #86efac;
+  display:flex;align-items:center;justify-content:center;font-size:.67rem;color:#16a34a
+}
+.price-btn{
+  width:100%;padding:.68rem;border-radius:9px;
+  border:2px solid var(--accent);background:transparent;
+  color:var(--accent);font-size:.83rem;font-weight:700;cursor:pointer;
+  transition:background .22s,color .22s,box-shadow .22s;margin-top:auto
+}
+.price-btn:hover{background:var(--accent);color:#fff;box-shadow:0 4px 14px var(--accent-glow)}
+.price-card.popular .price-btn{background:var(--accent);color:#fff;border-color:var(--accent);box-shadow:0 4px 16px var(--accent-glow)}
+.price-card.popular .price-btn:hover{box-shadow:0 6px 24px var(--accent-glow)}
+
+/* ═══ CONTACT ═══ */
+#contact{background:var(--section-b)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3.4rem;margin-top:2.4rem}
+.contact-left .sec-desc{max-width:380px}
+.info-items{margin-top:1.6rem;display:flex;flex-direction:column;gap:.75rem}
+.info-item{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.9rem 1.05rem;border-radius:var(--r);
+  background:var(--white);border:1px solid var(--card-border);
+  box-shadow:var(--card-shadow);
+  transition:transform .22s,border-color .25s,box-shadow .25s
+}
+.info-item:hover{transform:translateX(4px);border-color:var(--blue-300);box-shadow:var(--card-shadow-hover)}
+.info-icon{width:40px;height:40px;border-radius:11px;background:var(--blue-50);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.info-item h4{font-size:.73rem;color:var(--text-muted);font-weight:600}
+.info-item p{font-size:.85rem;color:var(--text-primary);font-weight:700;margin:0}
+.info-item a{color:var(--text-primary)}
+/* form */
+.contact-form{background:var(--white);border:1px solid var(--card-border);border-radius:var(--r);padding:2.1rem;box-shadow:var(--card-shadow)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:.78rem;color:var(--text-secondary);font-weight:600;margin-bottom:.32rem}
+.field input,.field textarea,.field select{
+  width:100%;padding:.75rem .85rem;border-radius:9px;
+  background:var(--off-white);border:1.5px solid var(--card-border);
+  color:var(--text-primary);font-size:.87rem;
+  transition:border-color .25s,box-shadow .25s;
+  -webkit-appearance:none;appearance:none
+}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .85rem center;padding-right:2rem;background-color:var(--off-white)}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.field textarea{min-height:105px;resize:vertical}
+.field select option{background:var(--white)}
+.btn-send{
+  width:100%;padding:.78rem;border-radius:9px;border:none;
+  background:var(--accent);color:#fff;font-size:.9rem;font-weight:700;
+  box-shadow:0 4px 18px var(--accent-glow);
+  transition:transform .22s,box-shadow .22s;cursor:pointer
+}
+.btn-send:hover{transform:translateY(-2px);box-shadow:0 6px 28px var(--accent-glow)}
+
+/* toast */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;z-index:9000;
+  background:var(--white);border:1px solid #86efac;
+  border-radius:14px;padding:.9rem 1.25rem;
+  display:flex;align-items:center;gap:.65rem;
+  color:var(--text-primary);font-size:.86rem;font-weight:600;
+  box-shadow:0 6px 24px rgba(30,58,138,.14);
+  transform:translateY(110%);opacity:0;
+  transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .4s
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast .ti{font-size:1.2rem}
+
+/* ═══ FOOTER ═══ */
+footer{background:var(--blue-900);color:#fff;padding:2.4rem 2rem}
+.footer-in{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.8rem}
+.footer-in p{font-size:.78rem;color:rgba(255,255,255,.55)}
+.soc-row{display:flex;gap:.55rem}
+.soc{
+  width:38px;height:38px;border-radius:10px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  transition:transform .22s,background .25s,border-color .25s
+}
+.soc:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--off-white)}
+::-webkit-scrollbar-thumb{background:var(--blue-300);border-radius:3px}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .ind-grid{grid-template-columns:repeat(2,1fr)}
+  .ng-grid,.skills-grid{grid-template-columns:repeat(2,1fr)}
+  .exp-grid{grid-template-columns:1fr}
+  .exp-sticky{position:static}
+  .price-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hburg{display:flex}
+  .sec{padding:4.5rem 1.4rem}
+  .about-grid{grid-template-columns:1fr;gap:2rem}
+  .avatar-ring{width:185px;height:185px}
+  .avatar-initials{font-size:3rem}
+  .float-badge{font-size:.68rem;padding:.36rem .62rem}
+  .fb-1{top:2%;right:-6px} .fb-2{bottom:8%;left:-10px} .fb-3{bottom:25%;right:-12px}
+  .ind-grid,.ng-grid,.skills-grid,.pp-grid{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .price-grid{grid-template-columns:1fr}
+  .footer-in{flex-direction:column;text-align:center}
+}
+@media(max-width:480px){
+  .hero{padding:6rem 1.1rem 3rem}
+  .hero h1{letter-spacing:-.5px}
+  .stats-row{gap:1rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;max-width:240px;text-align:center;justify-content:center;display:flex}
+  .contact-form{padding:1.2rem}
+  .toast{right:.7rem;bottom:.7rem;left:.7rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <div class="nav-in">
+    <div class="logo">SEO<span>Specialist</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#industries">Industries</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+    <div class="hburg" id="hburg"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="m-ov" id="mOv"></div>
+<div class="m-pan" id="mPan">
+  <a href="#about">About</a>
+  <a href="#industries">Industries</a>
+  <a href="#skills">Skills</a>
+  <a href="#experience">Experience</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-mesh">
+    <div class="mesh-blob mb1"></div>
+    <div class="mesh-blob mb2"></div>
+    <div class="mesh-blob mb3"></div>
+  </div>
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span><span>Available for Freelance &amp; Full‑time</span></div>
+    <h1>Muhammad<br><span class="gt">Asif</span></h1>
+    <p class="hero-sub">SEO Specialist &amp; Organic Growth Strategist — Turning search intent into measurable revenue for businesses worldwide.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">4+</div><div class="stat-lbl">Years Exp</div></div>
+      <div class="stat"><div class="stat-val">20+</div><div class="stat-lbl">Clients</div></div>
+      <div class="stat"><div class="stat-val">Top 10</div><div class="stat-lbl">Rankings</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Let's Talk</a>
+      <a href="#pricing" class="btn-secondary">View Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" class="sec">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="avatar-wrap reveal">
+        <div class="avatar-ring">
+          <div class="avatar-inner"><div class="avatar-initials">MA</div></div>
+          <div class="float-badge fb-1"><span class="fbi">🏆</span> Top‑10 Rankings</div>
+          <div class="float-badge fb-2"><span class="fbi">🌐</span> Global Projects</div>
+          <div class="float-badge fb-3"><span class="fbi">🤖</span> AI SEO Expert</div>
+        </div>
+      </div>
+      <div class="about-info reveal">
+        <span class="sec-label">About Me</span>
+        <h2 class="sec-title">Turning Search Intent<br>Into <span class="hl">Real Growth</span></h2>
+        <p class="sec-desc">Results-driven SEO professional with 4+ years driving organic traffic, improving keyword rankings, and increasing qualified leads for local and international businesses.</p>
+        <p>I combine technical depth with creative strategy — from deep technical audits to content clustering and authority-building campaigns that deliver sustainable, long-term rankings across Google, AI Overviews, and next-gen search.</p>
+        <div class="edu-card">
+          <span style="font-size:1.45rem">🎓</span>
+          <div><h4>BS Information Technology</h4><p>Islamia University, Bahawalpur &nbsp;·&nbsp; 2018 – 2022</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ── -->
+<section id="industries" class="sec">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto">
+      <span class="sec-label" style="justify-content:center;display:flex">Industries</span>
+      <h2 class="sec-title">Serving Businesses<br>Across <span class="hl">Every Industry</span></h2>
+      <p class="sec-desc" style="max-width:100%">Proven expertise in Local &amp; International SEO across a wide range of verticals.</p>
+    </div>
+    <div class="ind-grid">
+      <div class="ind-card reveal"><div class="ind-icon">🏥</div><h4>Healthcare</h4><p>Clinics, doctors, labs — local + national visibility</p></div>
+      <div class="ind-card reveal"><div class="ind-icon">🏨</div><h4>Hospitality &amp; Travel</h4><p>Hotels, restaurants — geo-targeted growth</p></div>
+      <div class="ind-card reveal"><div class="ind-icon">🛒</div><h4>E-Commerce</h4><p>Product pages, category SEO &amp; conversions</p></div>
+      <div class="ind-card reveal"><div class="ind-icon">⚖️</div><h4>Legal Services</h4><p>Law firms — high-intent local keyword dominance</p></div>
+      <div class="ind-card reveal"><div class="ind-icon">💰</div><h4>Finance &amp; Banking</h4><p>Advisors, fintech — trust-authority SEO</p></div>
+      <div class="ind-card reveal"><div class="ind-icon">🏗️</div><h4>Real Estate</h4><p>Agents, builders — local market SEO</p></div>
+      <div class="ind-card reveal"><div class="ind-icon">💻</div><h4>SaaS &amp; Tech</h4><p>Software, apps — scalable content strategy</p></div>
+      <div class="ind-card reveal"><div class="ind-icon">🎓</div><h4>Education</h4><p>Schools, courses — student-facing SEO</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEXT-GEN SEO ── -->
+<section id="nextgen" class="sec">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto">
+      <span class="sec-label" style="justify-content:center;display:flex">Next-Gen SEO</span>
+      <h2 class="sec-title">Beyond Traditional SEO —<br><span class="hl">Future-Proof Search</span></h2>
+      <p class="sec-desc" style="max-width:100%">Search is evolving fast. I specialise in the emerging signals &amp; strategies that define where visibility is heading.</p>
+    </div>
+    <div class="ng-grid">
+      <div class="ng-card reveal"><div class="ng-head"><div class="ng-ico ic-bl">📍</div><div><h3>Local SEO</h3><p class="sub">Dominate your city</p></div></div><p>GMB optimisation, local citations, review strategies &amp; geo-targeted content for #1 local presence.</p><div class="ng-tags"><span class="ng-tag">GMB Optimisation</span><span class="ng-tag">Local Citations</span><span class="ng-tag">Geo-Pages</span><span class="ng-tag">Review Strategy</span></div></div>
+      <div class="ng-card reveal"><div class="ng-head"><div class="ng-ico ic-g">🌍</div><div><h3>International SEO</h3><p class="sub">Scale across borders</p></div></div><p>Hreflang, market-specific keywords &amp; cross-border authority to rank in multiple countries.</p><div class="ng-tags"><span class="ng-tag">Hreflang Setup</span><span class="ng-tag">Market Research</span><span class="ng-tag">Cross-Border Links</span><span class="ng-tag">Geo-Targeting</span></div></div>
+      <div class="ng-card reveal"><div class="ng-head"><div class="ng-ico ic-gd">🌐</div><div><h3>GEO – Generative Engine Optimisation</h3><p class="sub">Rank in AI answers</p></div></div><p>Optimise content to appear in Google AI summaries &amp; ChatGPT — the new frontier of organic reach.</p><div class="ng-tags"><span class="ng-tag">AI Summary Targeting</span><span class="ng-tag">Entity Optimisation</span><span class="ng-tag">Semantic SEO</span></div></div>
+      <div class="ng-card reveal"><div class="ng-head"><div class="ng-ico ic-pk">🤖</div><div><h3>AEO – Answer Engine Optimisation</h3><p class="sub">Own the answer box</p></div></div><p>Structure content to win featured snippets, People Also Ask &amp; direct answers.</p><div class="ng-tags"><span class="ng-tag">Featured Snippets</span><span class="ng-tag">PAA Targeting</span><span class="ng-tag">Schema &amp; Markup</span></div></div>
+      <div class="ng-card reveal"><div class="ng-head"><div class="ng-ico ic-rd">🧠</div><div><h3>AI SEO</h3><p class="sub">Built for AI-first search</p></div></div><p>Entity-based optimisation, semantic relevance &amp; ChatGPT visibility strategies for the AI era.</p><div class="ng-tags"><span class="ng-tag">ChatGPT Visibility</span><span class="ng-tag">Entity Graph</span><span class="ng-tag">AI Overview Ranking</span></div></div>
+      <div class="ng-card reveal"><div class="ng-head"><div class="ng-ico ic-p">📊</div><div><h3>Technical &amp; Content SEO</h3><p class="sub">The foundation</p></div></div><p>Deep audits, Core Web Vitals, content clustering &amp; TOFU–BOFU funnels that convert traffic.</p><div class="ng-tags"><span class="ng-tag">Full Audits</span><span class="ng-tag">Content Clusters</span><span class="ng-tag">CWV Fixes</span><span class="ng-tag">Link Building</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PAIN POINTS ── -->
+<section id="painpoints" class="sec">
+  <div class="wrap">
+    <div class="pp-head reveal">
+      <span class="sec-label">Why Clients Choose Me</span>
+      <h2 class="sec-title">Struggling With<br>These <span class="hl">Challenges?</span></h2>
+      <p class="sec-desc">The most common SEO hurdles businesses face today — and exactly where I deliver results.</p>
+    </div>
+    <div class="pp-grid">
+      <div class="pp-card reveal"><div class="pp-top"><div class="pp-num">01</div><div><h4>Website Not Ranking on Google</h4></div></div><p>Pages sit on page 2–3 forever with zero clicks while competitors grab all the traffic.</p><span class="pp-fix"><span class="chk">✓</span>Targeted keyword strategies that move you to Page 1</span></div>
+      <div class="pp-card reveal"><div class="pp-top"><div class="pp-num">02</div><div><h4>Organic Traffic is Flat or Dropping</h4></div></div><p>Traffic stagnant or declining after algorithm updates — you don't know what changed.</p><span class="pp-fix"><span class="chk">✓</span>Full audit + recovery plan to restore &amp; grow traffic</span></div>
+      <div class="pp-card reveal"><div class="pp-top"><div class="pp-num">03</div><div><h4>No Local Visibility in Your Area</h4></div></div><p>People search nearby but competitors show up in Maps and local results — not you.</p><span class="pp-fix"><span class="chk">✓</span>Local SEO &amp; GMB to dominate local search</span></div>
+      <div class="pp-card reveal"><div class="pp-top"><div class="pp-num">04</div><div><h4>Slow Website Hurting Rankings</h4></div></div><p>Google penalises slow pages and visitors bounce before seeing your content.</p><span class="pp-fix"><span class="chk">✓</span>Speed, crawl &amp; Core Web Vitals fixes</span></div>
+      <div class="pp-card reveal"><div class="pp-top"><div class="pp-num">05</div><div><h4>Content Exists But Doesn't Convert</h4></div></div><p>Blogs attract the wrong audience — traffic doesn't turn into leads or sales.</p><span class="pp-fix"><span class="chk">✓</span>TOFU–BOFU content strategy aligned to your funnel</span></div>
+      <div class="pp-card reveal"><div class="pp-top"><div class="pp-num">06</div><div><h4>Invisible in AI Search Results</h4></div></div><p>ChatGPT &amp; AI Overviews replace clicks — your brand is missing from AI answers.</p><span class="pp-fix"><span class="chk">✓</span>AEO &amp; GEO strategy for AI-powered search</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills" class="sec">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="sec-label">Expertise</span>
+      <h2 class="sec-title">Skills &amp; <span class="hl">Capabilities</span></h2>
+      <p class="sec-desc">A comprehensive toolkit built across years of hands-on work.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal"><div class="skill-card-head"><div class="sci ic-p">⚙️</div><div><h3>Technical SEO</h3><p class="sub">Deep-site performance</p></div></div><div class="tags"><span class="tag">Full Audits</span><span class="tag">Core Web Vitals</span><span class="tag">Crawl Budget</span><span class="tag">Schema</span><span class="tag">Canonicals</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-head"><div class="sci ic-pk">📝</div><div><h3>On-Page SEO</h3><p class="sub">Content &amp; structure</p></div></div><div class="tags"><span class="tag">Keyword Clustering</span><span class="tag">Meta Optimization</span><span class="tag">Internal Linking</span><span class="tag">URL Architecture</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-head"><div class="sci ic-g">🔗</div><div><h3>Off-Page SEO</h3><p class="sub">Authority &amp; backlinks</p></div></div><div class="tags"><span class="tag">Link Building</span><span class="tag">Outreach</span><span class="tag">Digital PR</span><span class="tag">Guest Posting</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-head"><div class="sci ic-gd">📊</div><div><h3>Content Strategy</h3><p class="sub">TOFU · MOFU · BOFU</p></div></div><div class="tags"><span class="tag">Topic Clusters</span><span class="tag">Gap Analysis</span><span class="tag">Pillar Pages</span><span class="tag">Competitor Research</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-head"><div class="sci ic-bl">🌍</div><div><h3>Local &amp; International</h3><p class="sub">Multi-market</p></div></div><div class="tags"><span class="tag">GMB</span><span class="tag">Citations</span><span class="tag">Hreflang</span><span class="tag">Geo-targeting</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-head"><div class="sci ic-rd">📈</div><div><h3>Analytics &amp; Reporting</h3><p class="sub">Data-driven decisions</p></div></div><div class="tags"><span class="tag">GA4</span><span class="tag">Search Console</span><span class="tag">ROI Tracking</span><span class="tag">Monthly Reports</span></div></div>
+    </div>
+    <div class="tools-sec reveal">
+      <span class="sec-label" style="display:flex;margin-bottom:.9rem">Tools &amp; Platforms</span>
+      <div class="tools-row">
+        <div class="tool-pill"><span class="tpi">🔍</span><span>Ahrefs</span></div>
+        <div class="tool-pill"><span class="tpi">📊</span><span>SEMrush</span></div>
+        <div class="tool-pill"><span class="tpi">🕷️</span><span>Screaming Frog</span></div>
+        <div class="tool-pill"><span class="tpi">📈</span><span>Google Analytics 4</span></div>
+        <div class="tool-pill"><span class="tpi">🔎</span><span>Search Console</span></div>
+        <div class="tool-pill"><span class="tpi">💻</span><span>WordPress</span></div>
+        <div class="tool-pill"><span class="tpi">🎨</span><span>Elementor</span></div>
+        <div class="tool-pill"><span class="tpi">📧</span><span>Hunter.io</span></div>
+        <div class="tool-pill"><span class="tpi">🎯</span><span>Apollo.io</span></div>
+        <div class="tool-pill"><span class="tpi">💼</span><span>LinkedIn Sales Nav</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience" class="sec">
+  <div class="wrap">
+    <div class="exp-grid">
+      <div class="exp-sticky reveal">
+        <span class="sec-label">Career</span>
+        <h2 class="sec-title">Professional<br><span class="hl">Experience</span></h2>
+        <p class="sec-desc">Four roles across agency and startup environments — consistently delivering SEO wins.</p>
+        <div class="exp-badges">
+          <span class="exp-badge">🏢 4 Companies</span>
+          <span class="exp-badge">📍 Lahore</span>
+          <span class="exp-badge">🌐 Remote Ready</span>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="exp-card reveal"><div class="exp-top"><div><h3>SEO Specialist</h3><h4>DevioTech, Lahore</h4></div><span class="exp-date">Jan 2024 – Present</span></div><ul><li>Managed multi-industry SEO projects across geographic markets</li><li>Increased organic traffic by up to <strong>70%</strong> within 6 months</li><li>Achieved Top-10 positions for high-intent commercial terms</li><li>Optimised Google Business Profiles → <strong>40%</strong> local visibility growth</li><li>Full technical SEO audits; resolved crawl &amp; indexing issues</li><li>High-authority backlink campaigns; monthly reports</li></ul></div>
+        <div class="exp-card reveal"><div class="exp-top"><div><h3>SEO Specialist</h3><h4>eWebCraft, Lahore</h4></div><span class="exp-date">Dec 2022 – Aug 2023</span></div><ul><li>On-page SEO across 20+ client websites</li><li>International backlink campaigns in competitive niches</li><li>Improved keyword positions by <strong>30%</strong></li><li>Collaborated with devs on technical SEO implementation</li></ul></div>
+        <div class="exp-card reveal"><div class="exp-top"><div><h3>SEO &amp; Digital Marketing Intern</h3><h4>Salsoft Technologies</h4></div><span class="exp-date">Dec 2021 – Oct 2022</span></div><ul><li>Content optimisation &amp; link-building operations</li><li>Keyword research and competitor analysis</li><li>Social media campaigns for brand visibility</li></ul></div>
+        <div class="exp-card reveal"><div class="exp-top"><div><h3>Link Builder &amp; Lead Gen Executive</h3><h4>Global Tech Insight</h4></div><span class="exp-date">Jun 2020 – Sep 2021</span></div><ul><li>Domain authority up <strong>40%</strong> via outreach</li><li>B2B lead generation with LinkedIn Sales Navigator</li><li>Cold-email campaigns &amp; prospecting workflows</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section id="pricing" class="sec">
+  <div class="wrap">
+    <div class="pricing-head reveal">
+      <span class="sec-label">Pricing</span>
+      <h2 class="sec-title">Transparent Plans<br>For <span class="hl">Every Business</span></h2>
+      <p class="sec-desc">Pick the plan that matches your goals. All plans include a dedicated strategy &amp; monthly reporting.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card reveal"><h3>Starter SEO</h3><p class="ptag">Strong foundation for visibility</p><div class="price-val"><span class="dollar">$</span><span class="amount">299</span><span class="mo">/ month</span></div><p class="price-best">Best for: New websites, personal brands, local services</p><ul class="price-list"><li><span class="chk">✓</span>Website SEO audit (technical + on-page)</li><li><span class="chk">✓</span>Keyword research (10–15 keywords)</li><li><span class="chk">✓</span>On-page SEO optimization</li><li><span class="chk">✓</span>Basic technical SEO fixes</li><li><span class="chk">✓</span>Google Search Console &amp; Analytics setup</li><li><span class="chk">✓</span>Local SEO setup (if required)</li><li><span class="chk">✓</span>Monthly performance report</li></ul><button class="price-btn">Get Started</button></div>
+      <div class="price-card popular reveal"><div class="pop-badge"><span class="pd"></span>Most Popular</div><h3>Growth SEO</h3><p class="ptag">Built to scale rankings &amp; traffic</p><div class="price-val"><span class="dollar">$</span><span class="amount">599</span><span class="mo">/ month</span></div><p class="price-best">Best for: Service businesses, SaaS, eCommerce</p><ul class="price-list"><li><span class="chk">✓</span>Complete SEO audit &amp; growth roadmap</li><li><span class="chk">✓</span>Keyword research &amp; clustering (25–30 keywords)</li><li><span class="chk">✓</span>Advanced on-page SEO</li><li><span class="chk">✓</span>Technical SEO (speed, crawl, index)</li><li><span class="chk">✓</span>Content optimization + 2 SEO blogs/month</li><li><span class="chk">✓</span>Backlink building (quality links)</li><li><span class="chk">✓</span>Local or International SEO</li><li><span class="chk">✓</span>Monthly reporting with insights</li></ul><button class="price-btn">Get Started</button></div>
+      <div class="price-card reveal"><h3>Authority SEO</h3><p class="ptag">Compete. Rank. Dominate.</p><div class="price-val"><span class="dollar">$</span><span class="amount">999</span><span class="mo">/ month</span></div><p class="price-best">Best for: Agencies, high-competition industries</p><ul class="price-list"><li><span class="chk">✓</span>Enterprise-level SEO strategy</li><li><span class="chk">✓</span>High-intent targeting (40–50 keywords)</li><li><span class="chk">✓</span>Advanced technical SEO &amp; schema</li><li><span class="chk">✓</span>Content funnel strategy (TOFU–BOFU)</li><li><span class="chk">✓</span>4 SEO-optimized content pieces/month</li><li><span class="chk">✓</span>High-authority backlink outreach</li><li><span class="chk">✓</span>AI search optimization (AI Overviews)</li><li><span class="chk">✓</span>Detailed monthly reporting</li></ul><button class="price-btn">Get Started</button></div>
+      <div class="price-card reveal"><h3>AI + Performance SEO</h3><p class="ptag">Future-ready search domination</p><div class="price-val"><span class="dollar">$</span><span class="amount">1,499</span><span class="mo">/ month</span></div><p class="price-best">Best for: Brands focused on AI search authority</p><ul class="price-list"><li><span class="chk">✓</span>Full SEO + AI optimization strategy</li><li><span class="chk">✓</span>Entity &amp; semantic SEO optimization</li><li><span class="chk">✓</span>Google AI Overview targeting</li><li><span class="chk">✓</span>ChatGPT &amp; generative search visibility</li><li><span class="chk">✓</span>Advanced technical SEO &amp; CRO</li><li><span class="chk">✓</span>Authority backlink building</li><li><span class="chk">✓</span>Weekly performance tracking</li><li><span class="chk">✓</span>Priority support &amp; reporting</li></ul><button class="price-btn">Get Started</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="sec">
+  <div class="wrap">
+    <div class="contact-wrap">
+      <div class="contact-left reveal">
+        <span class="sec-label">Contact</span>
+        <h2 class="sec-title">Let's Build<br><span class="hl">Something Great</span></h2>
+        <p class="sec-desc">Ready to boost your organic traffic and dominate search rankings?</p>
+        <div class="info-items">
+          <div class="info-item"><div class="info-icon">📧</div><div><h4>Email</h4><p><a href="mailto:mrasif.work@gmail.com">mrasif.work@gmail.com</a></p></div></div>
+          <div class="info-item"><div class="info-icon">📱</div><div><h4>Phone</h4><p><a href="tel:+923048896607">+92 304 8896607</a></p></div></div>
+          <div class="info-item"><div class="info-icon">📍</div><div><h4>Location</h4><p>Lahore, Pakistan</p></div></div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <span class="sec-label" style="display:flex;margin-bottom:.9rem">Send a Message</span>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="field"><label>Your Name</label><input type="text" placeholder="John Doe" required></div>
+            <div class="field"><label>Email Address</label><input type="email" placeholder="you@email.com" required></div>
+          </div>
+          <div class="field"><label>Service Needed</label><select><option value="" disabled selected>Select a service…</option><option>Starter SEO – $299/mo</option><option>Growth SEO – $599/mo</option><option>Authority SEO – $999/mo</option><option>AI + Performance SEO – $1,499/mo</option><option>Custom Package</option></select></div>
+          <div class="field"><label>Message</label><textarea placeholder="Tell me about your project…" required></textarea></div>
+          <button type="submit" class="btn-send">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-in">
+    <p>© 2026 Muhammad Asif — All rights reserved.</p>
+    <div class="soc-row">
+      <a href="mailto:mrasif.work@gmail.com" class="soc">📧</a>
+      <a href="tel:+923048896607" class="soc">📱</a>
+      <a href="#" class="soc">💼</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"><span class="ti">✅</span> Message sent! I'll get back to you soon.</div>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+/* ── NAV ── */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>55));
+
+/* ── MOBILE NAV ── */
+(function(){
+  const h=document.getElementById('hburg'),p=document.getElementById('mPan'),o=document.getElementById('mOv');
+  const t=v=>{h.classList.toggle('active',v);p.classList.toggle('active',v);o.classList.toggle('active',v)};
+  h.addEventListener('click',()=>t(!p.classList.contains('active')));
+  o.addEventListener('click',()=>t(false));
+  p.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>t(false)));
+})();
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)window.scrollTo({top:t.offsetTop-62,behavior:'smooth'})});
+});
+
+/* ── REVEAL ── */
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('vis');obs.unobserve(en.target)}});
+  },{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.07+'s';obs.observe(el)});
+})();
+/* ══════════════════════════════════════════════════════════════
+   HERO CANVAS  –  bottom-right bar chart + rocket launch
+   • Chart is anchored bottom-right → never covers hero text
+   • Rocket is bold & fully visible (no transparency wash)
+   • Background dots are whisper-quiet (.04-.08 opacity)
+   • A "📈 +147%" badge pops in when rocket launches
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const canvas=document.getElementById('heroCanvas');
+  const ctx=canvas.getContext('2d');
+  let W,H;
+  const resize=()=>{W=canvas.width=innerWidth;H=canvas.height=innerHeight};
+  resize();addEventListener('resize',resize);
+
+  /* ── data ── */
+  const BARS=[.30,.34,.33,.42,.40,.52,.50,.60,.66,.64,.74,.79,.77,.87,.90,1];
+  const N=BARS.length;
+
+  /* ── timing ── */
+  let startT=0;
+  const BAR_DUR=2400;   // bars animate in over 2.4 s
+  let barProg=0;
+
+  /* ── rocket ── */
+  let rocket={x:0,y:0,vx:0,vy:0,phase:0,timer:0};
+  // phase 0 = bars still drawing
+  // phase 1 = rocket flying
+  // phase 2 = rocket off-screen, waiting to relaunch
+
+  /* ── trail particles ── */
+  class Spark{
+    constructor(x,y){
+      this.x=x;this.y=y;this.life=1;
+      this.vx=(Math.random()-.5)*2.2;
+      this.vy=Math.random()*1.4+.6;
+      this.r=Math.random()*3.5+1.8;
+    }
+    update(){this.life-=.032;this.x+=this.vx;this.y+=this.vy;this.vx*=.965;this.vy*=.96}
+    draw(){
+      // core white-orange spark
+      ctx.globalAlpha=this.life*.75;
+      ctx.fillStyle='#fff';
+      ctx.beginPath();ctx.arc(this.x,this.y,this.r*this.life*.55,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='rgba(251,146,60,1)';
+      ctx.beginPath();ctx.arc(this.x,this.y,this.r*this.life,0,Math.PI*2);ctx.fill();
+      ctx.globalAlpha=1;
+    }
+  }
+  let sparks=[];
+
+  /* ── soft bg dots (very faint) ── */
+  class BgDot{
+    constructor(){this.reset()}
+    reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.r=Math.random()*1.8+.4;this.vx=(Math.random()-.5)*.22;this.vy=(Math.random()-.5)*.22;this.o=Math.random()*.07+.03}
+    update(){this.x+=this.vx;this.y+=this.vy;if(this.x<-5||this.x>W+5)this.vx*=-1;if(this.y<-5||this.y>H+5)this.vy*=-1}
+    draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(37,99,235,${this.o})`;ctx.fill()}
+  }
+  const bgDots=[];for(let i=0;i<35;i++)bgDots.push(new BgDot());
+
+  /* ── popup badge state ── */
+  let badge={alpha:0, scale:0, shown:false, hold:0};
+
+  /* ──────── chart region (bottom-right) ──────── */
+  function getChart(){
+    const tw=Math.min(W*.28, 360);
+    const th=Math.min(H*.22, 180);
+    const m=36; // margin from viewport edge
+    return { x:W-tw-m, y:H-th-m-28, w:tw, h:th };
+  }
+
+  /* ──────── draw bar chart ──────── */
+  function drawChart(prog){
+    const c=getChart();
+    const barSlot=c.w/N;
+    const barW=barSlot*.62;
+    const gap=barSlot-barW;
+
+    /* card bg – subtle rounded rect */
+    ctx.save();
+    ctx.globalAlpha=.55;
+    ctx.fillStyle='#fff';
+    roundRect(ctx, c.x-16, c.y-16, c.w+32, c.h+44, 16);
+    ctx.fill();
+    ctx.globalAlpha=.14;
+    ctx.strokeStyle='rgba(37,99,235,1)';
+    ctx.lineWidth=1.5;
+    roundRect(ctx, c.x-16, c.y-16, c.w+32, c.h+44, 16);
+    ctx.stroke();
+    ctx.restore();
+
+    /* baseline */
+    ctx.strokeStyle='rgba(30,58,138,.09)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(c.x,c.y+c.h);ctx.lineTo(c.x+c.w,c.y+c.h);ctx.stroke();
+
+    /* grid lines (2 horizontal) */
+    ctx.strokeStyle='rgba(30,58,138,.05)';ctx.lineWidth=.8;
+    [.33,.66].forEach(f=>{
+      ctx.beginPath();ctx.moveTo(c.x,c.y+c.h*(1-f));ctx.lineTo(c.x+c.w,c.y+c.h*(1-f));ctx.stroke();
+    });
+
+    let lastX=0, lastY=0, visCount=0;
+
+    for(let i=0;i<N;i++){
+      const fillRatio=Math.max(0, Math.min(1, prog*N-i));
+      if(fillRatio<=0)continue;
+      visCount=i+1;
+      const bH=c.h*BARS[i]*fillRatio;
+      const bx=c.x+i*barSlot+gap/2;
+      const by=c.y+c.h-bH;
+
+      /* bar gradient – vibrant blue */
+      const g=ctx.createLinearGradient(bx,by,bx,c.y+c.h);
+      g.addColorStop(0,'rgba(37,99,235,.62)');
+      g.addColorStop(.6,'rgba(59,130,246,.38)');
+      g.addColorStop(1,'rgba(37,99,235,.08)');
+      ctx.fillStyle=g;
+      roundRect(ctx, bx, by, barW, bH, 3);
+      ctx.fill();
+
+      /* top cap */
+      ctx.fillStyle='rgba(37,99,235,.78)';
+      ctx.fillRect(bx, by, barW, 2.5);
+
+      lastX=bx+barW/2;
+      lastY=by;
+    }
+
+    /* trend-line over bar tops */
+    if(visCount>=2){
+      ctx.beginPath();
+      ctx.strokeStyle='rgba(30,58,138,.45)';
+      ctx.lineWidth=2;ctx.lineJoin='round';
+      for(let i=0;i<visCount;i++){
+        const fillRatio=Math.max(0,Math.min(1,prog*N-i));
+        const bH=c.h*BARS[i]*fillRatio;
+        const px=c.x+i*barSlot+gap/2+barW/2;
+        const py=c.y+c.h-bH-3;
+        i===0?ctx.moveTo(px,py):ctx.lineTo(px,py);
+      }
+      ctx.stroke();
+      /* line dots */
+      for(let i=0;i<visCount;i++){
+        const fillRatio=Math.max(0,Math.min(1,prog*N-i));
+        const bH=c.h*BARS[i]*fillRatio;
+        const px=c.x+i*barSlot+gap/2+barW/2;
+        const py=c.y+c.h-bH-3;
+        ctx.beginPath();ctx.arc(px,py,2.5,0,Math.PI*2);
+        ctx.fillStyle='rgba(37,99,235,.6)';ctx.fill();
+      }
+    }
+
+    /* month labels */
+    const months=['J','F','M','A','M','J','J','A','S','O','N','D','J','F','M','A'];
+    ctx.fillStyle='rgba(30,58,138,.32)';
+    ctx.font='600 9px Open Sans, sans-serif';
+    ctx.textAlign='center';
+    for(let i=0;i<N;i++){
+      const lx=c.x+i*barSlot+barSlot/2;
+      ctx.fillText(months[i], lx, c.y+c.h+15);
+    }
+
+    // launch point = top of last visible bar
+    return {launchX:lastX, launchY:lastY-2};
+  }
+
+  /* ──────── draw rocket (bold, solid) ──────── */
+  function drawRocket(x,y,angle){
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.rotate(angle);
+
+    /* exhaust glow */
+    const eg=ctx.createRadialGradient(0,16,0,0,16,20);
+    eg.addColorStop(0,'rgba(251,146,60,.55)');
+    eg.addColorStop(.5,'rgba(249,115,22,.22)');
+    eg.addColorStop(1,'rgba(249,115,22,0)');
+    ctx.fillStyle=eg;
+    ctx.beginPath();ctx.arc(0,16,20,0,Math.PI*2);ctx.fill();
+
+    /* body */
+    ctx.fillStyle='#1e40af';
+    ctx.beginPath();
+    ctx.moveTo(0,-26);
+    ctx.quadraticCurveTo(-7,-16,-7,-4);
+    ctx.lineTo(-5,8);
+    ctx.lineTo(5,8);
+    ctx.lineTo(7,-4);
+    ctx.quadraticCurveTo(7,-16,0,-26);
+    ctx.fill();
+
+    /* nose cone – red */
+    ctx.fillStyle='#dc2626';
+    ctx.beginPath();
+    ctx.moveTo(0,-34);
+    ctx.quadraticCurveTo(-6,-28,-7,-22);
+    ctx.lineTo(7,-22);
+    ctx.quadraticCurveTo(6,-28,0,-34);
+    ctx.fill();
+
+    /* window */
+    ctx.fillStyle='rgba(186,230,253,.9)';
+    ctx.beginPath();ctx.ellipse(0,-14,2.8,4,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,.6)';
+    ctx.beginPath();ctx.ellipse(-1,-15,1,2,0,0,Math.PI*2);ctx.fill();
+
+    /* fins */
+    ctx.fillStyle='#2563eb';
+    ctx.beginPath();ctx.moveTo(-5,2);ctx.lineTo(-12,12);ctx.lineTo(-4,8);ctx.fill();
+    ctx.beginPath();ctx.moveTo(5,2);ctx.lineTo(12,12);ctx.lineTo(4,8);ctx.fill();
+
+    /* fin highlight edge */
+    ctx.fillStyle='rgba(147,197,253,.7)';
+    ctx.beginPath();ctx.moveTo(-5,2);ctx.lineTo(-9,9);ctx.lineTo(-5,6);ctx.fill();
+    ctx.beginPath();ctx.moveTo(5,2);ctx.lineTo(9,9);ctx.lineTo(5,6);ctx.fill();
+
+    ctx.restore();
+  }
+
+  /* ──────── draw popup badge "📈 +147%" ──────── */
+  function drawBadge(rx,ry){
+    if(!badge.shown)return;
+    badge.hold++;
+    if(badge.hold<60) badge.alpha=Math.min(1, badge.alpha+.06);  // fade in
+    else if(badge.hold>120) badge.alpha=Math.max(0, badge.alpha-.045); // fade out
+    if(badge.alpha<=0){badge.shown=false;badge.hold=0;return}
+
+    const bx=rx-38, by=ry-58;
+    const bw=96, bh=36;
+    ctx.save();
+    ctx.globalAlpha=badge.alpha;
+    /* shadow */
+    ctx.fillStyle='rgba(30,58,138,.18)';
+    roundRect(ctx,bx+2,by+3,bw,bh,8);ctx.fill();
+    /* bg */
+    ctx.fillStyle='#fff';
+    roundRect(ctx,bx,by,bw,bh,8);ctx.fill();
+    /* border */
+    ctx.strokeStyle='rgba(37,99,235,.25)';ctx.lineWidth=1.5;
+    roundRect(ctx,bx,by,bw,bh,8);ctx.stroke();
+    /* arrow icon */
+    ctx.fillStyle='#16a34a';
+    ctx.font='bold 15px sans-serif';ctx.textAlign='left';ctx.textBaseline='middle';
+    ctx.fillText('📈',bx+8,by+bh/2);
+    /* text */
+    ctx.fillStyle='#16a34a';
+    ctx.font='bold 13px Open Sans, sans-serif';ctx.textAlign='left';
+    ctx.fillText('+147%',bx+30,by+bh/2);
+    ctx.restore();
+  }
+
+  /* ──────── rounded rect helper ──────── */
+  function roundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+    ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+    ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);
+  }
+
+  /* ──────── main loop ──────── */
+  function loop(ts){
+    if(!startT)startT=ts;
+    ctx.clearRect(0,0,W,H);
+
+    /* 1. faint bg dots */
+    bgDots.forEach(d=>{d.update();d.draw()});
+
+    /* 2. bar progress */
+    barProg=Math.min(1,(ts-startT)/BAR_DUR);
+    const launch=drawChart(barProg);
+
+    /* 3. rocket state machine */
+    if(barProg>=1 && rocket.phase===0){
+      rocket.x=launch.launchX;
+      rocket.y=launch.launchY;
+      rocket.vx=-.6; rocket.vy=-2.8;
+      rocket.phase=1; rocket.timer=0;
+      badge.shown=true; badge.hold=0; badge.alpha=0;
+    }
+
+    if(rocket.phase===1){
+      rocket.timer++;
+      rocket.vx-=.008;   // gentle curve up-left
+      rocket.vy-=.018;
+      rocket.x+=rocket.vx;
+      rocket.y+=rocket.vy;
+
+      /* sparks every frame */
+      if(rocket.timer%2===0){
+        for(let i=0;i<4;i++)
+          sparks.push(new Spark(rocket.x+(Math.random()-.5)*5, rocket.y+18+(Math.random()-.5)*4));
+      }
+
+      /* draw sparks behind rocket */
+      sparks=[...sparks.filter(s=>s.life>0)];
+      sparks.forEach(s=>{s.update();s.draw()});
+
+      /* rocket */
+      const angle=Math.atan2(rocket.vx,-rocket.vy);
+      drawRocket(rocket.x, rocket.y, angle);
+
+      /* badge */
+      drawBadge(launch.launchX, launch.launchY);
+
+      /* off-screen → phase 2 */
+      if(rocket.y < -80 || rocket.x < -80 || rocket.x > W+80){
+        rocket.phase=2; rocket.timer=0;
+      }
+    }
+
+    /* phase 2: wait then relaunch */
+    if(rocket.phase===2){
+      /* draw any remaining sparks */
+      sparks=[...sparks.filter(s=>s.life>0)];
+      sparks.forEach(s=>{s.update();s.draw()});
+      rocket.timer++;
+      if(rocket.timer>150){
+        rocket.x=launch.launchX;
+        rocket.y=launch.launchY;
+        rocket.vx=-.6; rocket.vy=-2.8;
+        rocket.phase=1; rocket.timer=0;
+        sparks=[];
+        badge.shown=true; badge.hold=0; badge.alpha=0;
+      }
+    }
+
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+
+/* ── 3D TILT on cards ── */
+document.querySelectorAll('.skill-card,.exp-card,.price-card,.ng-card,.ind-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const rY=((e.clientX-r.left)/r.width-.5)*8;
+    const rX=(.5-(e.clientY-r.top)/r.height)*8;
+    card.style.transform=`perspective(700px) rotateX(${rX}deg) rotateY(${rY}deg) translateY(-4px)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform=''});
+});
+
+/* ── PRICING btns → contact ── */
+document.querySelectorAll('.price-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{const t=document.getElementById('contact');if(t)window.scrollTo({top:t.offsetTop-62,behavior:'smooth'})});
+});
+
+/* ── FORM ── */
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const toast=document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3200);
+  e.target.reset();
+});
+</script>
+</body>
+</html>
